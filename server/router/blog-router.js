@@ -10,7 +10,6 @@ import {
   singleBlog,
   createBlog,
   deleteBlog,
-  editorsPick,
 } from "../controller/blog-controller.js";
 
 const router = Router();
