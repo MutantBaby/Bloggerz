@@ -1,4 +1,4 @@
-const cors = (req, res, next) => {
+const corsMiddleware = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://bloggerz-c.vercel.app");
   res.header(
     "Access-Control-Allow-Methods",
@@ -12,3 +12,5 @@ const cors = (req, res, next) => {
 
   next();
 };
+
+export default corsMiddleware;
