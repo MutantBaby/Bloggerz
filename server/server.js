@@ -2,6 +2,7 @@ import cors from "cors";
 import chalk from "chalk";
 import express from "express";
 import { config } from "dotenv";
+import bodyParser from "body-parser";
 import database from "./utils/database.js";
 import authRouter from "./router/auth-router.js";
 import blogRouter from "./router/blog-router.js";
@@ -13,7 +14,8 @@ import corsMiddleware from "./middleware/cors-middleware.js";
 config();
 const app = express();
 
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     credentials: true,
