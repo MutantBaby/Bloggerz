@@ -7,6 +7,8 @@ import authRouter from "./router/auth-router.js";
 import blogRouter from "./router/blog-router.js";
 import commentRouter from "./router/comment-router.js";
 
+//done
+
 config();
 const app = express();
 
