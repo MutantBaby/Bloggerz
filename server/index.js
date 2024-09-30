@@ -34,7 +34,7 @@ app.use("/api/auth", corsMiddleware, authRouter);
 app.use("/api/blog", corsMiddleware, blogRouter);
 app.use("/api/comment", corsMiddleware, commentRouter);
 
-app.listen(process.env.PORT, async () => {
+app.listen(Number(process.env.PORT), async () => {
   await database();
   console.log(chalk.cyan(`[listen] ${process.env.PORT}`));
 });
