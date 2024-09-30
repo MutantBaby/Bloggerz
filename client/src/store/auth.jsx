@@ -6,6 +6,8 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const SERVER_URI = import.meta.env.VITE_SERVER_URI;
 
+  console.log("API ", SERVER_URI);
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(localStorage.getItem("logger"));

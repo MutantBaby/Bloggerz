@@ -6,6 +6,7 @@ import database from "./utils/database.js";
 import authRouter from "./router/auth-router.js";
 import blogRouter from "./router/blog-router.js";
 import commentRouter from "./router/comment-router.js";
+import corsMiddleware from "./middleware/cors-middleware.js";
 
 //done
 
@@ -27,9 +28,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/auth", authRouter);
-app.use("/api/blog", blogRouter);
-app.use("/api/comment", commentRouter);
+app.use("/api/auth", corsMiddleware, authRouter);
+app.use("/api/blog", corsMiddleware, blogRouter);
+app.use("/api/comment", corsMiddleware, commentRouter);
 
 app.listen(process.env.PORT, async () => {
   await database();
