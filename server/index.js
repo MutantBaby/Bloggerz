@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     credentials: true,
-    origin: "https://bloggerz-c.vercel.app/",
+    origin: "https://bloggerz-s.vercel.app",
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   })
