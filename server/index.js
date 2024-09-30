@@ -9,8 +9,6 @@ import blogRouter from "./router/blog-router.js";
 import commentRouter from "./router/comment-router.js";
 import corsMiddleware from "./middleware/cors-middleware.js";
 
-//done
-
 config();
 const app = express();
 
