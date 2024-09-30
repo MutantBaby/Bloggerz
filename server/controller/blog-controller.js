@@ -161,5 +161,4 @@ export {
   createBlog,
   singleBlog,
   deleteBlog,
-  editorsPick,
 };
