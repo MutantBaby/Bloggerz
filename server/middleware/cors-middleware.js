@@ -1,5 +1,5 @@
 const corsMiddleware = (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://bloggerz-c.vercel.app");
+  res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL);
   res.header(
     "Access-Control-Allow-Methods",
     "GET",
