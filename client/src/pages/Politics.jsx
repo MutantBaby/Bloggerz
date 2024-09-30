@@ -13,7 +13,6 @@ export default function Politics() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      credentials: "include",
     });
 
     const response = await request.json();

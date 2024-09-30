@@ -58,7 +58,8 @@ const politics = async (req, res) => {
 
 const feature = async (req, res) => {
   try {
-    const random_Index = Math.round(Math.random() * 2);
+    const random_Index = Math.round(Math.random() * 1);
+    console.log(random_Index);
     const featureBlogs = await Blog.findOne()
       .skip(random_Index)
       .populate("author");
@@ -88,6 +89,7 @@ const editorsPick = async (req, res) => {
       .limit(4)
       .sort({ title: -1 })
       .populate("author");
+
     res.status(200).json(editorsPickBlogs);
   } catch (error) {
     console.log(chalk.magenta(`[editorsPick] ${error.message}`));
@@ -95,19 +97,37 @@ const editorsPick = async (req, res) => {
   }
 };
 
+const editBlog = async (req, res) => {
+  try {
+    const { id, title, body } = req.body;
+    const updatedBlog = await Blog.findByIdAndUpdate(
+      id,
+      { title, body },
+      { new: true }
+    );
+
+    if (updatedBlog)
+      res.status(200).json({ message: "Blog updated successfully" });
+    else res.status(404).json({ message: "Blog not found" });
+  } catch (error) {
+    console.log(chalk.magenta(`[editBlog] ${error.message}`));
+    res.status(400).json({ message: error.message });
+  }
+};
+
 const count = async (req, res) => {
   try {
-    const travel = await Blog.find({ category: "Travel" }).count();
-    const politics = await Blog.find({ category: "Politics" }).count();
+    const travel = await Blog.find({ category: "Travel" });
+    const politics = await Blog.find({ category: "Politics" });
 
     res.status(200).json([
       {
         category: "travel",
-        count: travel,
+        count: travel.length,
       },
       {
         category: "politics",
-        count: politics,
+        count: politics.length,
       },
     ]);
   } catch (error) {
@@ -137,7 +157,7 @@ const deleteBlog = async (req, res) => {
     if (deleted) {
       console.log(`${deleted._id} deleted successfully`);
       res.status(200).json({ message: "deleted successfully" });
-    }
+    } else res.status(404).json({ message: "Not deleted!" });
   } catch (error) {
     console.log(chalk.magenta(`[deleteBlog] ${error.message}`));
     res.status(400).json({ message: error.message });
@@ -151,6 +171,7 @@ export {
   feature,
   userBlog,
   politics,
+  editBlog,
   createBlog,
   singleBlog,
   deleteBlog,

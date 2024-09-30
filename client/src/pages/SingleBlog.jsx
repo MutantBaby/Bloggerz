@@ -1,10 +1,13 @@
 import Markdown from "react-markdown";
 import { useAuth } from "../store/auth";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBin2Line } from "react-icons/ri";
+import rehypeRaw from "rehype-raw"; // Import rehype-raw
+import remarkGfm from "remark-gfm";
+import { processMarkdownImages } from "../utils";
 
 export default function SingleBlog() {
   const { SERVER_URI, defaultAvatar, user, token } = useAuth();
@@ -24,7 +27,7 @@ export default function SingleBlog() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      credentials: "include",
+
       body: JSON.stringify({ id: id }),
     });
 
@@ -42,7 +45,6 @@ export default function SingleBlog() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        credentials: "include",
       });
 
       const response = await request.json();
@@ -72,7 +74,7 @@ export default function SingleBlog() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        credentials: "include",
+
         body: JSON.stringify({ content: newComment }),
       });
 
@@ -96,7 +98,6 @@ export default function SingleBlog() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        credentials: "include",
       });
 
       if (request.status === 200)
@@ -121,8 +122,8 @@ export default function SingleBlog() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        credentials: "include",
-        body: JSON.stringify({ content: editedComment }), // Send the updated comment
+
+        body: JSON.stringify({ content: editedComment }),
       });
 
       const response = await request.json();
@@ -143,14 +144,14 @@ export default function SingleBlog() {
     }
   };
 
+  processMarkdownImages();
+
   useEffect(() => {
     GetSingle();
     GetComments();
   }, []);
 
   console.log("Comment ", comments);
-
-  // <button>{<BiEdit />}</button>;
 
   return (
     <section className="container singleBlog">
@@ -164,7 +165,21 @@ export default function SingleBlog() {
       )}
 
       <h1 className="blogTitle">{single && single.title}</h1>
-      <Markdown className="singleBody">{single && single.body}</Markdown>
+
+      <div
+        className="singleBody"
+        dangerouslySetInnerHTML={{
+          __html: processMarkdownImages(single.body),
+        }}
+      />
+
+      {/*
+      <Markdown
+        className="singleBody"
+        rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm]}>
+        {single && single.body}
+      </Markdown> */}
 
       {single && (
         <div className="singleBlogAuthor">
@@ -189,36 +204,6 @@ export default function SingleBlog() {
           </div>
         </div>
       )}
-
-      {/* <div className="commentsSection">
-        <h3>Comments</h3>
-        {comments.length === 0 ? (
-          <p>No comments yet.</p>
-        ) : (
-          <ul>
-            {comments?.map((comment, index) => (
-              <li key={index} className="commentItem">
-                <h6>{comment?.author?.name}: </h6>
-                <p>{comment?.body}</p>
-                {comment?.author?._id === user?._id && (
-                  <>
-                    <button
-                      onClick={() =>
-                        startEditingComment(comment._id, comment.body)
-                      }>
-                      <BiEdit />
-                    </button>{" "}
-                    &nbsp; &nbsp;
-                    <button onClick={() => deleteComment(comment?._id)}>
-                      {<RiDeleteBin2Line />}
-                    </button>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div> */}
 
       <div className="commentsSection">
         <h3>Comments</h3>

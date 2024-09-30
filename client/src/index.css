@@ -721,6 +721,64 @@ footer {
 .singleBody {
   overflow-wrap: anywhere;
 }
+
+.singleBody {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+  margin: 20px 0;
+}
+
+.singleBody h1,
+.singleBody h2,
+.singleBody h3,
+.singleBody h4,
+.singleBody h5,
+.singleBody h6 {
+  margin: 20px 0 10px;
+  font-weight: bold;
+}
+
+.singleBody p {
+  margin: 10px 0;
+}
+
+.singleBody img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px 0;
+}
+
+.singleBody pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+.singleBody code {
+  background-color: #e0e0e0;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.singleBody ul,
+.singleBody ol {
+  margin: 10px 0 10px 20px;
+}
+
+.singleBody blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 10px;
+  margin: 10px 0;
+  color: #555;
+  background-color: #f9f9f9;
+}
+
 .footer_article > a {
   text-decoration: none;
   color: var(--color);

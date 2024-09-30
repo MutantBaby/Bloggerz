@@ -9,7 +9,6 @@ export default function FooterSocial() {
   const GetCount = async () => {
     const request = await fetch(`${SERVER_URI}/api/blog/count`, {
       method: "GET",
-      credentials: "include",
     });
 
     const response = await request.json();

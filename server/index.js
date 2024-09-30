@@ -16,12 +16,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
-    credentials: true,
+    preflightContinue: false,
     origin: process.env.CLIENT_URL,
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   })
 );
+app.options("*", cors());
 
 app.use("/", (req, res, next) => {
   console.log(`Received ${req.method} request for ${req.url}`);

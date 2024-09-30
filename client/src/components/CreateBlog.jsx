@@ -24,7 +24,7 @@ export default function CreateBlog() {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
+      
       body: JSON.stringify({
         title: create.title,
         body,

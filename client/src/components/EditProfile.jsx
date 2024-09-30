@@ -28,7 +28,6 @@ export default function EditProfile() {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
-      credentials: "include",
       body: JSON.stringify({
         id: edit.id,
         avatar: edit.avatar,

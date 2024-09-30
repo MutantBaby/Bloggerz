@@ -14,7 +14,6 @@ export default function Blogs() {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
       body: JSON.stringify({ blog_limit: limit }),
     });
 

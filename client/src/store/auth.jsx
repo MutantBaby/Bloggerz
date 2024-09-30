@@ -31,7 +31,6 @@ export const AuthProvider = ({ children }) => {
         headers: {
           Authorization: "Bearer " + token,
         },
-        credentials: "include",
       });
 
       const response = await request.json();

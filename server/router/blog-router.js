@@ -6,6 +6,7 @@ import {
   feature,
   politics,
   userBlog,
+  editBlog,
   singleBlog,
   createBlog,
   deleteBlog,
@@ -21,6 +22,7 @@ router.route("/single").post(singleBlog);
 router.route("/count").get(count);
 router.route("/blogs").post(blogs);
 router.route("/travel").get(travel);
+router.route("/edit").put(editBlog);
 router.route("/feature").get(feature);
 router.route("/politics").get(politics);
 router.route("/editorspick").get(editorsPick);

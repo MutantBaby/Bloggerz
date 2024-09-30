@@ -9,7 +9,6 @@ export default function Feature() {
   const feat = async () => {
     const request = await fetch(`${SERVER_URI}/api/blog/feature`, {
       method: "GET",
-      credentials: "include",
     });
 
     const response = await request.json();

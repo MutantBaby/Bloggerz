@@ -13,7 +13,7 @@ export default function Travel() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      credentials: "include",
+      
     });
 
     const response = await request.json();
