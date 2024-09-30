@@ -25,7 +25,6 @@ router.route("/travel").get(travel);
 router.route("/edit").put(editBlog);
 router.route("/feature").get(feature);
 router.route("/politics").get(politics);
-router.route("/editorspick").get(editorsPick);
 
 router.route("/delete").delete(deleteBlog);
 

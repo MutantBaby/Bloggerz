@@ -83,20 +83,6 @@ const blogs = async (req, res) => {
   }
 };
 
-const editorsPick = async (req, res) => {
-  try {
-    const editorsPickBlogs = await Blog.find()
-      .limit(4)
-      .sort({ title: -1 })
-      .populate("author");
-
-    res.status(200).json(editorsPickBlogs);
-  } catch (error) {
-    console.log(chalk.magenta(`[editorsPick] ${error.message}`));
-    res.status(400).json({ message: error.message });
-  }
-};
-
 const editBlog = async (req, res) => {
   try {
     const { id, title, body } = req.body;
