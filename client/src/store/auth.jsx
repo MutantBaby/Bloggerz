@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  let SERVER_URI = import.meta.env.VITE_SERVER_URI;
+  const SERVER_URI = import.meta.env.VITE_SERVER_URI;
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const deleteTokenInLS = () => {
-    setUser(null); // empty out user
+    setUser(null);
     return localStorage.removeItem("logger");
   };
 
