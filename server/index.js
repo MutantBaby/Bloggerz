@@ -36,3 +36,5 @@ app.listen(Number(process.env.PORT), async () => {
   await database();
   console.log(chalk.cyan(`[listen] ${process.env.PORT}`));
 });
+
+// dn
